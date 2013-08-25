@@ -17,8 +17,9 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.3'
 
   s.files              = Dir['[A-Z]*'] +
-                         Dir['{lib,test}/**/*'] +
+                         Dir['{bin,lib,test}/**/*'] +
                          [ 'nanoc-cli.gemspec' ]
+  s.executables        = [ 'nanoc' ]
   s.require_paths      = [ 'lib' ]
 
   s.rdoc_options     = [ '--main', 'README.md' ]
