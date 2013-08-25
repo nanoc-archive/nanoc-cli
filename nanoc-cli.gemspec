@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version     = Nanoc::CLI::VERSION
   s.homepage    = 'http://nanoc.ws/'
   s.summary     = 'CLI for nanoc'
-  s.description = s.summary
+  s.description = 'Provides the commandline interface for nanoc'
 
   s.author  = 'Denis Defreyne'
   s.email   = 'denis.defreyne@stoneship.org'
