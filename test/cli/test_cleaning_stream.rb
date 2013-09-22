@@ -9,7 +9,7 @@ class Nanoc::CLI::CleaningStreamTest < Nanoc::TestCase
     def initialize
       @called_methods = Set.new
     end
-    
+
     def method_missing(symbol, *args)
       @called_methods << symbol
     end
@@ -17,7 +17,25 @@ class Nanoc::CLI::CleaningStreamTest < Nanoc::TestCase
   end
 
   def test_forward
-    methods = [ :write, :<<, :tty?, :flush, :tell, :print, :puts, :string, :reopen, :exist?, :exists?, :close ]
+    methods = [
+      :write,
+      :<<,
+      :tty?,
+      :flush,
+      :tell,
+      :print,
+      :puts,
+      :string,
+      :reopen,
+      :exist?,
+      :exists?,
+      :close,
+      :winsize,
+      :winsize=,
+      :set_encoding,
+      :sync,
+      :sync=,
+    ]
 
     s = Stream.new
     cs = Nanoc::CLI::CleaningStream.new(s)
@@ -34,6 +52,11 @@ class Nanoc::CLI::CleaningStreamTest < Nanoc::TestCase
     cs.exist?
     cs.exists?
     cs.close
+    cs.winsize
+    cs.winsize = 'reallybig'
+    cs.set_encoding('iso-666')
+    cs.sync
+    cs.sync = true
 
     methods.each do |m|
       assert s.called_methods.include?(m), "expected #{m} to be called"

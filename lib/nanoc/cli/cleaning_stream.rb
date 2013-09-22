@@ -109,6 +109,21 @@ module Nanoc::CLI
       @stream.winsize=(arg)
     end
 
+    # @see IO#set_encoding
+    def set_encoding(*args)
+      @stream.set_encoding(*args)
+    end
+
+    # @see IO#sync
+    def sync
+      @stream.sync
+    end
+
+    # @see IO#sync=
+    def sync=(bool)
+      @stream.sync=(bool)
+    end
+
   protected
 
     def clean(s)
