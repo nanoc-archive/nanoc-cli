@@ -15,6 +15,8 @@ $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + '/../lib'))
 require 'nanoc/core'
 require 'nanoc/cli'
 
+Nanoc::CLI.setup
+
 # Load miscellaneous requirements
 require 'stringio'
 
