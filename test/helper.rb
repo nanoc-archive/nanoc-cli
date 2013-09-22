@@ -20,19 +20,6 @@ require 'stringio'
 
 module Nanoc::TestHelpers
 
-  def if_have(*libs)
-    libs.each do |lib|
-      begin
-        require lib
-      rescue LoadError
-        skip "requiring #{lib} failed"
-        return
-      end
-    end
-
-    yield
-  end
-
   def in_site(params={})
     # Build site name
     site_name = params[:name]
@@ -99,13 +86,6 @@ EOS
   end
 
   def setup
-    # Check skipped
-    if ENV['skip']
-      if ENV['skip'].split(',').include?(self.class.to_s)
-        skip 'manually skipped'
-      end
-    end
-
     # Clean up
     GC.start
 
@@ -139,70 +119,6 @@ EOS
     end
   end
 
-  def capturing_stdio(&block)
-    # Store
-    orig_stdout = $stdout
-    orig_stderr = $stderr
-
-    # Run
-    $stdout = StringIO.new
-    $stderr = StringIO.new
-    yield
-    { :stdout => $stdout.string, :stderr => $stderr.string }
-  ensure
-    # Restore
-    $stdout = orig_stdout
-    $stderr = orig_stderr
-  end
-
-  # Adapted from http://github.com/lsegal/yard-examples/tree/master/doctest
-  def assert_examples_correct(object)
-    P(object).tags(:example).each do |example|
-      # Classify
-      lines = example.text.lines.map do |line|
-        [ line =~ /^\s*# ?=>/ ? :result : :code, line ]
-      end
-
-      # Join
-      pieces = []
-      lines.each do |line|
-        if !pieces.empty? && pieces.last.first == line.first
-          pieces.last.last << line.last
-        else
-          pieces << line
-        end
-      end
-      lines = pieces.map { |p| p.last }
-
-      # Test
-      b = binding
-      lines.each_slice(2) do |pair|
-        actual_out   = eval(pair.first, b)
-        expected_out = eval(pair.last.match(/# ?=>(.*)/)[1], b)
-
-        assert_equal expected_out, actual_out,
-          "Incorrect example:\n#{pair.first}"
-      end
-    end
-  end
-
-  def assert_contains_exactly(expected, actual)
-    assert_equal expected.size, actual.size,
-      'Expected %s to be of same size as %s' % [actual.inspect, expected.inspect]
-    remaining = actual.dup.to_a
-    expected.each do |e|
-      index = remaining.index(e)
-      remaining.delete_at(index) if index
-    end
-    assert remaining.empty?,
-      'Expected %s to contain all the elements of %s' % [actual.inspect, expected.inspect]
-  end
-
-  def assert_raises_frozen_error
-    error = assert_raises(RuntimeError, TypeError) { yield }
-    assert_match(/(^can't modify frozen |^unable to modify frozen object$)/, error.message)
-  end
-
 end
 
 class Nanoc::TestCase < Minitest::Test
@@ -213,11 +129,3 @@ end
 
 # Unexpected system exit is unexpected
 ::Minitest::Test::PASSTHROUGH_EXCEPTIONS.delete(SystemExit)
-
-# A more precise inspect method for Time improves assert failure messages.
-#
-class Time
-  def inspect
-    strftime("%a %b %d %H:%M:%S.#{"%06d" % usec} %Z %Y")
-  end
-end
