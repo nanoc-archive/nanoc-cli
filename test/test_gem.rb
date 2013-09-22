@@ -17,8 +17,8 @@ class Nanoc::GemTest < Nanoc::TestCase
     files_before = Set.new Dir['**/*']
     stdout = ''
     stderr = ''
-    status = systemu(
-      [ 'gem', 'build', 'nanoc-cli.gemspec' ],
+    status, _ = systemu(
+      'gem build nanoc-cli.gemspec',
       'stdin'  => '',
       'stdout' => stdout,
       'stderr' => stderr)
