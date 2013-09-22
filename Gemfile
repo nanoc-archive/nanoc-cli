@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 gemspec
 
-gem 'nanoc-core', :git => 'git://github.com/nanoc/nanoc-core.git'
+gem 'nanoc-core', :github => 'nanoc/nanoc-core'
 gem 'cri'
 
 group :development do
