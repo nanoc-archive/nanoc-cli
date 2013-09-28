@@ -96,7 +96,7 @@ module Nanoc::CLI::Commands
         self.teardown_diffs
       end
 
-    protected
+      protected
 
       def setup_diffs
         @diff_lock    = Mutex.new
@@ -184,7 +184,7 @@ module Nanoc::CLI::Commands
         self.print_profiling_feedback
       end
 
-    protected
+      protected
 
       def print_profiling_feedback
         # Get max filter length
