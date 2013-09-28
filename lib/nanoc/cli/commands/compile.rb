@@ -318,7 +318,6 @@ module Nanoc::CLI::Commands
       @compiler.load
       self.run_listeners_while do
         @compiler.run
-        self.prune
       end
 
       time_after = Time.now
@@ -327,15 +326,6 @@ module Nanoc::CLI::Commands
     end
 
   protected
-
-    def prune
-      # TODO make this a listener (and eventually move this into Nanoc::Compiler itself)
-      if self.site.config[:prune][:auto_prune]
-        identifier = @compiler.item_rep_writer.class.identifier
-        pruner_class = Nanoc::Pruner.named(identifier)
-        pruner_class.new(self.site, :exclude => self.prune_config_exclude).run
-      end
-    end
 
     def default_listener_classes
       [
@@ -371,14 +361,6 @@ module Nanoc::CLI::Commands
 
     def reps
       @compiler.item_rep_store.reps
-    end
-
-    def prune_config
-      self.site.config[:prune] || {}
-    end
-
-    def prune_config_exclude
-      self.prune_config[:exclude] || {}
     end
 
   end
