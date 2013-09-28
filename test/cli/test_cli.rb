@@ -102,4 +102,13 @@ EOS
     end
   end
 
+  def test_after_setup
+    $after_setup_success = false
+    Nanoc::CLI.after_setup do
+      $after_setup_success = true
+    end
+    Nanoc::CLI.setup
+    assert $after_setup_success
+  end
+
 end
