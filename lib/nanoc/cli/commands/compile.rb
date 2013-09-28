@@ -233,38 +233,6 @@ module Nanoc::CLI::Commands
 
     end
 
-    # Controls garbage collection so that it only occurs once every 20 items
-    class GCController < Listener
-
-      # @see Listener#enable_for?
-      def self.enable_for?(command_runner)
-        ! ENV.has_key?('TRAVIS')
-      end
-
-      def initialize(params={})
-        @gc_count = 0
-      end
-
-      # @see Listener#start
-      def start
-        Nanoc::NotificationCenter.on(:compilation_started) do |rep|
-          if @gc_count % 20 == 0
-            GC.enable
-            GC.start
-            GC.disable
-          end
-          @gc_count += 1
-        end
-      end
-
-      # @see Listener#stop
-      def stop
-        super
-        GC.enable
-      end
-
-    end
-
     # Prints debug information (compilation started/ended, filtering started/ended, …)
     class DebugPrinter < Listener
 
@@ -374,7 +342,6 @@ module Nanoc::CLI::Commands
         Nanoc::CLI::Commands::Compile::DiffGenerator,
         Nanoc::CLI::Commands::Compile::DebugPrinter,
         Nanoc::CLI::Commands::Compile::TimingRecorder,
-        Nanoc::CLI::Commands::Compile::GCController,
         Nanoc::CLI::Commands::Compile::FileActionPrinter
       ]
     end
