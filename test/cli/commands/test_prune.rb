@@ -93,6 +93,10 @@ class Nanoc::CLI::Commands::PruneTest < Nanoc::TestCase
   end
 
   def test_run_with_symlink_to_output_dir
+    if 'jruby' == RUBY_ENGINE && '1.7.4' == JRUBY_VERSION
+      skip "Symlink behavior on JRuby is known to be broken (see https://github.com/jruby/jruby/issues/1036)"
+    end
+
     in_site do
       # Set output dir
       FileUtils.rm_rf('output')
