@@ -314,8 +314,7 @@ module Nanoc::CLI::Commands
       self.load_site
 
       puts "Compiling site…"
-      @compiler = Nanoc::Compiler.new(self.site)
-      @compiler.load
+      @compiler = Nanoc::CompilerBuilder.new.build(self.site)
       self.run_listeners_while do
         @compiler.run
       end

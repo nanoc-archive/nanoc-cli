@@ -50,7 +50,7 @@ module Nanoc::TestHelpers
   end
 
   def compile_site_here
-    Nanoc::Compiler.new(site_here).run
+    Nanoc::CompilerBuilder.new.build(site_here).run
   end
 
   def create_site_here(params={})

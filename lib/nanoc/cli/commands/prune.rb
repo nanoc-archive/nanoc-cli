@@ -39,7 +39,7 @@ module Nanoc::CLI::Commands
   protected
 
     def pruner_class
-      compiler = Nanoc::Compiler.new(self.site)
+      compiler = Nanoc::CompilerBuilder.new.build(self.site)
       identifier = compiler.item_rep_writer.class.identifier
       Nanoc::Pruner.named(identifier)
     end

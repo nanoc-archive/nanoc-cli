@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/nanoc/nanoc-core.git
-  revision: 8d452e16935fd2431caaf54f8f2589ed498d4d04
+  revision: 2cb46de36e846436ca58be29ce1746afac7b1687
   specs:
     nanoc-core (4.0.0a1)
 

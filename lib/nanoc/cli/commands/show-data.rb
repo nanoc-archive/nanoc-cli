@@ -21,7 +21,7 @@ module Nanoc::CLI::Commands
       layouts   = self.site.layouts
 
       # Get dependency tracker
-      compiler = Nanoc::Compiler.new(self.site)
+      compiler = Nanoc::CompilerBuilder.new.build(self.site)
       compiler.load
       dependency_tracker = compiler.dependency_tracker
 
