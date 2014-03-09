@@ -8,10 +8,6 @@ gem 'cri'
 group :development do
   gem 'minitest'
   gem 'rake'
-end
-
-group :test do
-  gem 'minitest'
   gem 'systemu'
 end
 
