@@ -270,7 +270,7 @@ EOS
 
       # Extract arguments and options
       path        = arguments[0]
-      data_source = options.fetch(:datasource, 'filesystem')
+      data_source = options.fetch(:datasource, :filesystem).to_sym
 
       # Check whether site exists
       if File.exist?(path)
