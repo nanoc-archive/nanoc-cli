@@ -6,6 +6,8 @@
 
 nanoc-cli is the commandline interface to nanoc-core. Together, along with a handful of other plugins, they form nanoc.
 
+Part of nanoc 4.x.
+
 ## Requirements
 
 Ruby 1.9.x and up. nanoc-cli also depends on the `cri` library.
