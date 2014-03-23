@@ -43,8 +43,8 @@ module Nanoc::CLI::Commands
         use Rack::ShowExceptions
         use Rack::Lint
         use Rack::Head
-        use Adsf::Rack::IndexFileFinder, :root => site.config[:output_dir]
-        run Rack::File.new(site.config[:output_dir])
+        use Adsf::Rack::IndexFileFinder, :root => site.config[:build_dir]
+        run Rack::File.new(site.config[:build_dir])
       end.to_app
 
       # Run app

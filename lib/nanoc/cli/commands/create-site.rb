@@ -28,7 +28,7 @@ module Nanoc::CLI::Commands
 # The path to the directory where all generated files will be written to. This
 # can be an absolute path starting with a slash, but it can also be path
 # relative to the site directory.
-output_dir: #{Nanoc::SiteLoader::DEFAULT_CONFIG[:output_dir]}
+build_dir: #{Nanoc::SiteLoader::DEFAULT_CONFIG[:build_dir]}
 
 # A list of index filenames, i.e. names of files that will be served by a web
 # server when a directory is requested. Usually, index files are named
@@ -304,7 +304,8 @@ EOS
     # essentials to qualify as a nanoc site.
     def site_create_minimal(data_source)
       # Create output
-      FileUtils.mkdir_p('output')
+      build_dir = Nanoc::SiteLoader::DEFAULT_CONFIG[:build_dir]
+      FileUtils.mkdir_p(build_dir)
 
       # Create config
       File.write('nanoc.yaml', DEFAULT_CONFIG)

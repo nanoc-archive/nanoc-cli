@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 usage       'prune'
-summary     'remove files not managed by nanoc from the output directory'
+summary     'remove files not managed by nanoc from the build directory'
 description <<-EOS
-Find all files in the output directory that do not correspond to an item
+Find all files in the build directory that do not correspond to an item
 managed by nanoc and remove them. Since this is a hazardous operation, an
 additional `--yes` flag is needed as confirmation.
 
@@ -29,7 +29,7 @@ module Nanoc::CLI::Commands
       else
         $stderr.puts "WARNING: Since the prune command is a destructive command, it requires an additional --yes flag in order to work."
         $stderr.puts
-        $stderr.puts "Please ensure that the output directory does not contain any files (such as images or stylesheets) that are necessary but are not managed by nanoc. If you want to get a list of all files that would be removed, pass --dry-run."
+        $stderr.puts "Please ensure that the build directory does not contain any files (such as images or stylesheets) that are necessary but are not managed by nanoc. If you want to get a list of all files that would be removed, pass --dry-run."
         exit 1
       end
 

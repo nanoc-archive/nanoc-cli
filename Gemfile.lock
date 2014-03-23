@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/nanoc/nanoc-core.git
-  revision: b27441f18961ad062d16c786c810bf78a19a5ae5
+  revision: 49f41ea16794ab7a0ab3cf412a2a5d9c5a1a21e5
   specs:
     nanoc-core (4.0.0a1)
       ddplugin
@@ -19,7 +19,7 @@ GEM
     cri (2.5.0)
       colored (>= 1.2)
     ddplugin (0.1)
-    minitest (5.3.0)
+    minitest (5.3.1)
     rake (10.1.1)
     systemu (2.6.4)
 
