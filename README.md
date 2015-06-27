@@ -1,29 +1,3 @@
-[![Build Status](https://travis-ci.org/nanoc/nanoc-cli.png)](https://travis-ci.org/nanoc/nanoc-cli)
-[![Code Climate](https://codeclimate.com/github/nanoc/nanoc-cli.png)](https://codeclimate.com/github/nanoc/nanoc-cli)
-[![Coverage Status](https://coveralls.io/repos/nanoc/nanoc-cli/badge.png?branch=master)](https://coveralls.io/r/nanoc/nanoc-cli)
+This repository was part of the initial attempt at writing nanoc 4. That attempt did not go as initially planned, and was cancelled mid May 2015.
 
-# nanoc-cli
-
-nanoc-cli is the commandline interface to nanoc-core. Together, along with a handful of other plugins, they form nanoc.
-
-Part of nanoc 4.x.
-
-## Requirements
-
-Ruby 1.9.x and up. nanoc-cli also depends on the `cri` library.
-
-## Installation
-
-Take a look at the [nanoc installation page](http://nanoc.ws/install/).
-
-## Tests
-
-Run `rake` to run all the tests.
-
-## Documentation
-
-Check out the [nanoc web site](http://nanoc.ws)!
-
-## License
-
-nanoc-cli is licensed under the MIT license. For details, check out the LICENSE file.
+Do not despair! There is a _true_ nanoc 4, and it lives in the [nanoc/nanoc repository](http://github.com/nanoc/nanoc). For information about nanoc 4 and how to upgrade, consult the [nanoc 4 upgrade guide](http://nanoc.ws/docs/nanoc-4-upgrade-guide/).
